@@ -19,7 +19,9 @@
 
 #include "dual.h"
 #include "error.h"
-#include "third_party/kokkos/mdspan.hpp"
+#ifdef __cpp_lib_mdspan
+#include <mdspan>
+#endif
 
 /* PyUFunc_getfperr gets bits for current floating point error (fpe) status codes so we
  * can check for floating point errors and make proper calls to set_error in ufunc loops.
