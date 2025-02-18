@@ -13,13 +13,18 @@
 #include <vector>
 
 #include <numpy/arrayobject.h>
+#include <numpy/npy_common.h>
 #include <numpy/npy_3kcompat.h>
 #include <numpy/npy_math.h>
 #include <numpy/ufuncobject.h>
 
 #include "dual.h"
 #include "error.h"
+#ifdef __cpp_lib_mdspan
+#include <mdspan>
+#else
 #include "third_party/kokkos/mdspan.hpp"
+#endif
 
 /* PyUFunc_getfperr gets bits for current floating point error (fpe) status codes so we
  * can check for floating point errors and make proper calls to set_error in ufunc loops.
